@@ -1,0 +1,19 @@
+import {useEffect,useState} from 'react';
+import {validSequence} from './encodingModel';
+export function useSignalClock(units:number){
+ const [position,setPosition]=useState(0),[playing,setPlaying]=useState(false),[speed,setSpeed]=useState(1);
+ useEffect(()=>{if(!playing||position>=units)return;let last=performance.now();const id=setInterval(()=>{const now=performance.now(),delta=Math.min(.15,(now-last)/1000);last=now;setPosition(t=>Math.min(units,t+delta*speed/1.2));},40);return()=>clearInterval(id);},[playing,speed,units,position>=units]);
+ const running=playing&&position<units;
+ function reset(){setPlaying(false);setPosition(0);}
+ function seek(t:number){setPlaying(false);setPosition(Math.min(units,Math.max(0,t)));}
+ function toggle(){if(position>=units)setPosition(0);setPlaying(!running);}
+ return {position,running,speed,units,reset,seek,toggle,setSpeed};
+}
+export type SignalClock=ReturnType<typeof useSignalClock>;
+export function SignalPlayback({clock,symbols=false}:{clock:SignalClock;symbols?:boolean}){return <div className="encoding-playback"><div className="playback"><button className="primary" onClick={clock.toggle}>{clock.running?'暂停动画':'播放动画'}</button><button onClick={()=>clock.seek(Math.floor(clock.position+1+1e-7))}>下一{symbols?'码元':'比特'}</button><button onClick={clock.reset}>重新开始</button><button onClick={()=>clock.seek(clock.units)}>看完整波形</button><label className="speed-label">播放速度<select aria-label="播放速度" value={clock.speed} onChange={e=>clock.setSpeed(+e.target.value)}><option value=".5">0.5×</option><option value="1">1×</option><option value="2">2×</option></select></label></div><label className="timeline"><span>演示进度</span><input type="range" aria-label="演示进度" min="0" max={clock.units} step=".01" value={clock.position} onChange={e=>clock.seek(+e.target.value)}/><span>{Math.floor(clock.position)} / {clock.units}</span></label></div>}
+export function BitInput({bits,onChange,exactLength}:{bits:string;onChange:(v:string)=>void;exactLength?:number}){
+ const [draft,setDraft]=useState(bits),[error,setError]=useState('');
+ function apply(v:string){onChange(v);setDraft(v);setError('');}
+ return <div className="encoding-input"><form onSubmit={e=>{e.preventDefault();if(!validSequence(draft,exactLength??4,exactLength??12)){setError(exactLength?`请输入恰好 ${exactLength} 个 0 或 1。`:'请输入 4—12 个 0 或 1。');return;}apply(draft);}}><label htmlFor="encoding-bits">比特串输入</label><div><input id="encoding-bits" value={draft} aria-describedby="encoding-input-hint" aria-invalid={!!error} onChange={e=>setDraft(e.target.value)} autoComplete="off" spellCheck={false} inputMode="numeric" maxLength={24}/><button type="submit" className="primary">应用</button></div><p id="encoding-input-hint" className={error?'input-error':'hint'} role={error?'alert':undefined}>{error||(exactLength?`本节固定 ${exactLength} 位，便于比较不同码元分组。`:'可输入 4—12 位。下方预设便于课堂对照。')}</p></form><div className="bit-presets">{[['混合比特',exactLength?'001011011100':'10110010'],['连续 0','0'.repeat(exactLength??bits.length)],['连续 1','1'.repeat(exactLength??bits.length)],['交替 01','01'.repeat(6).slice(0,exactLength??bits.length)]].map(([title,v])=><button key={title} className={bits===v?'chosen':''} onClick={()=>apply(v)}>{title}</button>)}</div></div>
+}
+export function ReceiverRows({rows,bits,complete}:{rows:{name:string;bits:string;color:string}[];bits:string;complete:number}){return <div className="receiver-results"><p>接收端已判读的比特 <span>完成一个传输单元后揭示结果</span></p>{rows.map(row=><div className="receiver-row" key={row.name}><span style={{color:row.color}}>{row.name}</span><div className="receiver-bits" style={{gridTemplateColumns:`repeat(${bits.length},1fr)`}}>{bits.split('').map((bit,i)=><span key={i} className={i>=complete?'pending':row.bits[i]!==bit?'incorrect':'correct'}>{i>=complete?'·':row.bits[i]}</span>)}</div></div>)}</div>}

@@ -1,0 +1,92 @@
+export const artItems={
+ burialRobot:['single',0,'海底埋缆机器人','履带式海缆埋设设备的教学插画。实际工程还可能使用拖曳犁、喷射式设备等，按海床与缆型选择；这里展示沿浅海路段移动与埋设的过程。'],
+ cableReel:['single',1,'光缆储缆卷盘','用于认识储缆设备；大型铺缆船也常使用储缆舱或缆池，具体装载方式依船舶和工程而定。'],
+ wall:['single',2,'墙体障碍物','墙体对电磁波的衰减与反射取决于材料、厚度和频率；插画不代表固定衰减数值。'],
+ load:['single',3,'端接负载','用电阻物件表示端接负载。是否匹配要比较负载与传输线的阻抗，而不是根据外观或颜色判断。'],
+ laptop:['hardware',0,'笔记本电脑','设备外观插画；信号怎样编码、发送和接收，以动画中的模型为准。'],
+ server:['hardware',1,'服务器','服务器处理网络请求；图片上的机箱、指示灯不代表特定厂商或实际运行状态。'],
+ switch:['hardware',2,'以太网交换机','外观帮助识别设备；本课使用的端口编号、连接关系和 MAC 表由动画明确标出。'],
+ router:['hardware',3,'无线接入设备','天线收发电磁波；波纹是传播过程的示意，并非肉眼可见的波。'],
+ phone:['hardware',4,'手机','手机接入机舱 Wi-Fi，再通过飞机上的专用卫星终端上网。'],
+ terminal:['hardware',5,'平板卫星终端','相控阵终端外观示意，不代表某个具体星链硬件型号。'],
+ plug:['workbench',0,'水晶头 · 8P8C 插头','插画用于认识物件，不用于核对针脚数量、方向或线序。制作时按主动画的观察方向和 T568A/B 排列核对。'],
+ pliers:['workbench',1,'压线钳','压接工具应与插头、线缆匹配；插图不是某款工具的操作说明。'],
+ twisted:['workbench',2,'四对双绞线','认识相互绞合的线对。制作水晶头时保留细线绝缘，不要仿照插画剥露铜芯。'],
+ tester:['workbench',3,'主机与远端测线仪','物件插画中的灯仅为外观；实际测试结果请看主动画逐引脚绘制的八路灯号。'],
+ testerMain:['single',4,'测线仪主机','主机逐引脚发出测试信号；请看主动画中明确标注的八路灯号。'],
+ testerRemote:['single',5,'测线仪远端','远端显示引脚的对应关系；简单导通测试不等于完整性能认证。'],
+ coax:['workbench',4,'同轴线缆与连接器','中心导体、绝缘介质与外导体共轴；具体接头及端接要求随系统而异。'],
+ seaCable:['workbench',5,'海底光缆','结构外观示意；真正的层次、材料和供电关系，以本课逐层标注的代表性模型为准。'],
+ ship:['infrastructure',0,'铺缆船','认识工程设备。缆线的落底位置、张力与埋设条件在主动画中分别讲解。'],
+ landing:['infrastructure',1,'海缆登陆站','海缆在这里与陆地网络衔接；建筑布局为教学插画。'],
+ satellite:['infrastructure',2,'通用通信卫星','通用外观插画，不是星链实拍；请通过课程中的官方资料链接认识真实设备。'],
+ airplane:['infrastructure',3,'带卫星天线的客机','机顶天线外观为示意；手机连接机舱网络，不是直接连到星链卫星。'],
+ gateway:['infrastructure',4,'地面网关天线','用于解释卫星与地面网络的连接；不代表所有网关的天线形式。'],
+ dataCenter:['infrastructure',5,'数据中心','跨地区访问可能经过陆地光纤、海缆及其他链路，具体路径由实际网络决定。'],
+ studentA:['characters',0,'小安 A','故事角色；A 表示网卡的 MAC 地址简写，交换机不会识别人物身份。'],
+ studentB:['characters',1,'小白 B','故事角色；只有 B 发出的帧进入交换机，交换机才从源地址学习 B。'],
+ studentC:['characters',2,'小陈 C','故事角色；收到未知单播的副本后，目的地址不符就忽略该帧。'],
+ envelope:['characters',3,'把帧想成一封信','这是帮助理解封装和地址的比喻，帧并不是物理信封。'],
+ parcel:['characters',4,'把数据想成待发送的包裹','用于理解排队与发送顺序的比喻；信号传播速度不是包裹运输速度。'],
+ notebook:['characters',5,'把 MAC 表想成认路本','表项必须由主动画中的真实学习逻辑决定，不能提前写入收件人。'],
+ scope:['instruments',0,'观察信号的示波器','帮助联想到真实测量；插画屏幕不是本实验的测量数据，数值以主动画为准。'],
+ fiber:['instruments',1,'光纤跳线','图片用于认识光纤连接；纤芯、包层、模式和光路均为后续放大示意。'],
+ walkie:['instruments',2,'对讲机','用来理解半双工的轮流通信；现实系统的具体通信方式取决于设计。'],
+ tower:['instruments',3,'无线通信天线','设备外观插画；频率分配、信号传播和干扰的原理在动画中说明。'],
+ mux:['instruments',4,'光波长复用器','几路光可以合入同一根光纤；不同颜色只是波长标签，不代表肉眼可见光。'],
+ serialCable:['instruments',5,'串行接口线缆','串行是一条逻辑通路逐位传送，不等于只有一根导线；这里只用外观建立联系。'],
+ starlinkRender:['reference',0,'卫星教学插画 · 查看官方结构','本图为通用卫星插画，不代表 V2 Mini 的真实外观。请打开官方结构资料查看真实设计。'],
+ starlinkPhoto:['reference',1,'卫星教学插画 · 查看真实影像','本图为通用卫星插画。下方链接提供官方历史部署影像；历史照片不代表当前所有卫星的构型。'],
+ aircraftPhoto:['reference',2,'客机教学插画 · 查看机顶天线','本图为客机教学插画。请打开官方航空资料查看机顶终端的真实外观与安装位置。']
+} as const;
+export type ArtId=keyof typeof artItems;
+export const storyArtDescriptions:Record<string,Partial<Record<ArtId,{title:string;detail:string}>>>={
+ 'ipv4':{
+  studentA:{title:'电脑 A 的使用者',detail:'A 是发送端电脑的代号。本节根据该电脑接口上的 IPv4 地址、掩码和路由配置判断下一跳，字母 A 不表示实际 IP 或 MAC 地址。'},
+  studentB:{title:'观察地址边界',detail:'人物是课堂故事的角色。网络地址、广播地址与主机地址的身份由完整地址和前缀决定，与人物身份无关。'},
+  switch:{title:'三层交换机 · 网关接口',detail:'沿用交换机外观教学插画。Packet Tracer 实验中的 G 使用 3560，启用 IP 路由并配置三层接口；普通二层交换机不会因为外观相似就具有路由能力。'},
+  envelope:{title:'把 IP 数据报想成一封信',detail:'信封是理解最终目的与下一跳的比喻。本节没有 NAT，数据交给网关时目的 IP 仍是最终主机；动画不展示具体帧字段。'}
+ }
+};
+export const storyArtSequences:Record<string,readonly ArtId[]>={
+ 'vlan/isolation':['envelope','switch','studentA','switch','envelope','studentC','switch','router'],
+ 'stp/tree':['studentA','envelope','switch','switch','studentB','twisted','notebook','envelope','switch'],
+ 'etherchannel/bundle':['twisted','switch','studentA','envelope','server','twisted','switch','switch','switch'],
+ 'ipv4/address':['studentA','laptop','laptop','laptop','laptop','laptop'],
+ 'ipv4/mask':['laptop','laptop','laptop','laptop','laptop','laptop'],
+ 'ipv4/and':['laptop','laptop','laptop','laptop','laptop','laptop','laptop'],
+ 'ipv4/same-network':['studentA','studentA','server','studentA','laptop','server'],
+ 'ipv4/range':['laptop','laptop','laptop','studentA','laptop','studentB'],
+ 'ipv4/division':['laptop','laptop','laptop','laptop','studentA','studentB'],
+ 'ipv4/gateway':['switch','studentB','server','switch','envelope','switch','studentA'],
+ 'twisted/wiring':['plug','plug','twisted','plug','plug'],
+ 'twisted/crimp':['pliers','twisted','twisted','pliers','plug','pliers','tester'],
+ 'twisted/tester':['tester','tester','twisted','plug','tester'],
+ 'twisted/signal':['twisted','scope','scope','twisted','scope'],
+ 'coax/structure':['coax'], 'coax/signal':['coax','load','coax','scope','scope'],
+ 'fiber/reflection':['fiber'], 'fiber/structure':['fiber'], 'fiber/signal':['fiber','scope','scope','scope','scope'],
+ 'fiber/sea-structure':['seaCable'], 'fiber/sea-laying':['ship','cableReel','landing','ship','burialRobot','landing'],
+ 'fiber/global-map':['dataCenter','landing','seaCable','dataCenter','seaCable'],
+ 'radio/propagation':['router','router','laptop','laptop','router'],
+ 'radio/interference':['router','wall','router','laptop','router'],
+ 'radio/satellite':['starlinkPhoto','starlinkRender','terminal','starlinkRender','starlinkRender'],
+ 'radio/starlink':['laptop','terminal','gateway','starlinkRender','starlinkRender'],
+ 'radio/aviation':['aircraftPhoto','phone','airplane','gateway','airplane'],
+ 'encoding/baseband':['scope'], 'encoding/modulation':['tower','scope','scope','scope','scope'],
+ 'encoding/rates':['scope','scope','laptop','scope','laptop'],
+ 'multiplex/fdm':['tower'], 'multiplex/tdm':['laptop','switch','switch','laptop','switch'],
+ 'multiplex/wdm':['fiber','mux','fiber','mux','fiber'], 'multiplex/cdm':['tower'],
+ 'delay/transmission':['parcel','laptop','laptop','laptop','fiber'],
+ 'delay/propagation':['fiber','fiber','seaCable','scope','fiber'],
+ 'delay/arrival':['laptop','fiber','laptop','server','scope'],
+ 'communication/directions':['tower','walkie','walkie','phone','phone'],
+ 'communication/serial':['serialCable'], 'communication/skew':['scope'],
+ 'ethernet/frame':['envelope','envelope','envelope','parcel','envelope','envelope'],
+ 'ethernet/crc':['notebook','notebook','notebook','notebook','envelope','laptop','laptop'],
+ 'switching/learning':['studentA','envelope','notebook','notebook','envelope','studentB','studentB','notebook','studentA','envelope','switch']
+};
+export function artForScene(key:string,step:number):ArtId{
+ const items=storyArtSequences[key];
+ if(!items)throw new Error(`缺少分镜图片配置：${key}`);
+ return items[Math.max(0,Math.min(items.length-1,step))];
+}

@@ -1,0 +1,9 @@
+import type {ReactNode} from 'react';
+import type {SignalClock} from './EncodingControls';
+export function FlowDrawing({label,children,height=360}:{label:string;children:ReactNode;height?:number}){return <><div className="wide-diagram"><svg className="flow-diagram" viewBox={`0 0 800 ${height}`} role="img" aria-label={label}>{children}</svg></div><p className="diagram-hint">可左右滑动查看完整图示。</p></>}
+export function FlowPlayback({clock,events,label,end=clock.units}:{clock:SignalClock;events:number[];label:string;end?:number}){
+ const next=events.filter(t=>t>clock.position+1e-7).sort((a,b)=>a-b)[0]??end;
+ return <div className="encoding-playback"><div className="playback"><button className="primary" onClick={clock.toggle}>{clock.running?'暂停动画':'播放动画'}</button><button onClick={()=>clock.seek(next)}>下一关键时刻</button><button onClick={clock.reset}>重新开始</button><button onClick={()=>clock.seek(end)}>看完成状态</button><label className="speed-label">播放速度<select aria-label="播放速度" value={clock.speed} onChange={e=>clock.setSpeed(+e.target.value)}><option value=".5">0.5×</option><option value="1">1×</option><option value="2">2×</option></select></label></div><label className="timeline flow-timeline"><span>演示进度</span><input type="range" aria-label="演示进度" min="0" max={clock.units} step=".01" value={clock.position} onChange={e=>clock.seek(+e.target.value)}/><output>{label}</output></label></div>;
+}
+export function FlowSelect({label,value,onChange,options}:{label:string;value:number;onChange:(v:number)=>void;options:[number,string][]}){return <label className="field-label">{label}<select aria-label={label} value={value} onChange={e=>onChange(+e.target.value)}>{options.map(([v,name])=><option key={v} value={v}>{name}</option>)}</select></label>}
+export function FlowResult({title,children,warn=false}:{title:string;children:ReactNode;warn?:boolean}){return <div className={`mux-result ${warn?'mux-alert':''}`}><strong>{title}</strong><span>{children}</span></div>}

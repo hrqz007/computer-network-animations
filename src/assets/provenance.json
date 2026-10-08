@@ -1,0 +1,21 @@
+{
+  "edition": "public-open-source",
+  "checked": "2026-10-08",
+  "images": {
+    "included": "36 AI-generated teaching illustrations; see story generation prompts and THIRD_PARTY_NOTICES.md",
+    "externalOnly": [
+      "https://www.spacex.com/",
+      "https://starlink.com/technology",
+      "https://starlink.com/business/aviation"
+    ],
+    "note": "Official SpaceX / Starlink photographs and renders are linked, not redistributed. Generic illustrations do not depict actual Starlink hardware."
+  },
+  "map": {
+    "routes": "Self-authored synthetic teaching corridors; MIT",
+    "generator": "scripts/build-teaching-map.mjs",
+    "basemap": "Natural Earth ne_110m_land; public domain",
+    "terms": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "realMapExternalLink": "https://www.submarinecablemap.com/",
+    "note": "No TeleGeography route geometry, landing database or metadata is bundled. Animation is not live traffic."
+  }
+}

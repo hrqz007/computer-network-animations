@@ -1,0 +1,11 @@
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+const notice = ['Project license\n'+readFileSync('LICENSE','utf8'), ...['react','react-dom','scheduler'].map(name=>`${name}\n${readFileSync(resolve('node_modules',name,'LICENSE'),'utf8')}`)].join('\n\n');
+writeFileSync('dist/LICENSES.txt',notice);
+let html=readFileSync('dist/index.html','utf8');
+html=html.replace(/<script[^>]*src="([^"]+)"[^>]*><\/script>/g,(_,src)=>`<script type="module">${readFileSync(resolve('dist',src),'utf8').replace(/<\/script/gi,'<\\/script')}</script>`);
+html=html.replace(/<link[^>]*href="([^"]+\.css)"[^>]*>/g,(_,src)=>`<style>${readFileSync(resolve('dist',src),'utf8')}</style>`);
+html=html.replace('</body>',`<script type="text/plain" id="bundled-software-licenses">${notice.replace(/<\/script/gi,'<\\/script')}</script></body>`);
+mkdirSync('release',{recursive:true});
+writeFileSync('release/计算机网络原理实验室.html',html);
+console.log('已生成离线主页：release/计算机网络原理实验室.html');
